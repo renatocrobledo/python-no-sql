@@ -9,7 +9,7 @@ document = {
 }
 
 try:
- # myFirstCollection.insert_one(document)
+  myFirstCollection.insert_one(document)
   result = myFirstCollection.find()
   for document_extracted in result:
     print(document_extracted)
