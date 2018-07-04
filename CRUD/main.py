@@ -35,7 +35,7 @@ def update(id, name = '', price = '', description = ''):
 def delete(id):
   document = Stock.objects(id = id)[0]
   print(document.to_json())
-  return document.delete()
+  document.delete()
 
 def get_input_and_execute(fn, input_string = 'none'):
   print('Imput expected: ', input_string)
@@ -43,9 +43,9 @@ def get_input_and_execute(fn, input_string = 'none'):
   if input_string != 'none':
     user_fields = input()
     arguments = tuple(x.strip() for x in user_fields.split(','))
-    return fn(*arguments)
+    fn(*arguments)
   else:
-    return fn()
+    fn()
 
 def show_menu():
   print('[ 1 ] Create')
@@ -59,7 +59,7 @@ def crud_action(action):
   actionTuple = {
       '1': (create, 'name, price, description'),
       '2': (read_all,),
-      '3': (read_first, 'name' ),
+      '3': (read_first, 'name'),
       '4': (update, 'id, name, price, description'),
       '5': (delete, 'id')
   }[action]
